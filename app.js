@@ -88,18 +88,8 @@ app.post("/compose",function(req,res)
       context:req.body.article
     }
   ); 
-  post1.save(function(err)
-  {
-    if(err)
-    {
-      console.log(err);
-    }
-    else
-    {
-       res.redirect("/")     
-      
-    }
-  })
+  post1.save();
+  res.redirect("/")     
 });
 
 app.get("/about",function(req,res)
@@ -114,18 +104,22 @@ app.get("/contact",function(req,res)
 
 
 
-app.get("/:user",function(req,res,next)
+app.get("/:user",function(req,res)
 {
   const anotherPosts=req.params.user;
   
   Article.findOne({_id:anotherPosts},function(err,results)
   {
-    if(err) return next(err)
-
-    return res.render(+__dirname+"views/post",{head:results.title,text:results.context});
- 
+    if(err)
+    {
+     console.log(err); 
+    }
+    else
+    {
+     res.render("post",{head:results.title,text:results.context});
+    }
+  
   });
-
   
 });
 
