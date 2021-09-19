@@ -4,9 +4,13 @@
 
 
 <%content.forEach(function(results){%>
-  <h1><%=results.title%></h1>
-
-   <p><%=results.context.substring(0,100)%>...<a href="/<%=results._id%>">Read more</a></p>
-
+  <form action="/delete" method="POST">
+     
+    <div class="intro">
+          <input type="checkbox" name="check" value="<%=results._id%>" class="large" onchange="this.form.submit()">
+          <h1><%=results.title%></h1>
+    </div> 
+     <p><%=results.context.substring(0,100)%>...<a href="/<%=results._id%>">Read more</a></p>
+  </form> 
 <%})%>  
 <%-include('partials/footer.ejs')-%>

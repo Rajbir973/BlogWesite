@@ -43,4 +43,23 @@
     font-size: 12px;
     color: #fff;
 }
+.intro
+{
+    display: flex;
+    align-items: center;
+}
 
+.large
+{
+    height: 28px;
+    width: 28px;
+    margin-left:10%;
+    margin-top: 20px;
+    border: 1px solid blue;
+}
+
+.large:checked+h1
+{
+    text-decoration:line-through;
+    text-decoration-color: cornflowerblue;
+}

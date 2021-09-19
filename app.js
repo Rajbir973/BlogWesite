@@ -116,12 +116,49 @@ app.get("/:user",function(req,res)
     }
     else
     {
-     res.render("post",{head:results.title,text:results.context});
+     res.render("post",{head:results.title,text:results.context,rid:results._id});
     }
   
   });
   
 });
+
+app.post("/delete",function(req,res)
+{
+  const checkeditem=req.body.check
+  
+  Article.findByIdAndDelete(checkeditem,function(err)
+  {
+    if(err)
+    {
+      console.log(err);
+    }
+    else
+    {
+      console.log("Sucessfully deleted");
+    }
+    res.redirect("/")
+  })
+})
+
+app.post("/edit",function(req,res)
+{
+    let editId=req.body.edit
+    let editContent=req.body.editText
+
+    Article.findByIdAndUpdate({_id:editId},{context:editContent},function(err,docs)
+    {
+      if(err)
+      {
+        console.log(err);
+      }
+      else
+      {
+        res.redirect("/"+editId)
+      }
+    })
+
+})
 
 
 app.listen(3000,function(req,res)

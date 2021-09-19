@@ -3,6 +3,11 @@
 <h1><%=head%></h1>
 
 <p><%=text%></p>
-
+<form action="/edit" method="post">
+    
+    <textarea class="form-control" name="editText" cols="10" rows="10"></textarea>
+    <br>
+   <button class="btn btn-primary" type="submit" name="edit" value="<%=rid%>">EDIT</button>
+</form>
 <%- include('partials/footer.ejs'); -%>
 
